@@ -69,6 +69,7 @@ let everyonesFavorites = array => {
         const favSport = person.favorites.sport
         const output = `${name}'s favorite color is ${favColor}, their favorite animal is a ${favAnimal}, and their favorite sport is ${favSport}`
         returnArray.push(output)
+        console.log(output)
     })
     return returnArray
 }
@@ -89,10 +90,10 @@ a notification that you have won. If it does not match you will get a notificati
 */
 
 let lottoWinner = ([firstNum, ...rest]) => {
-    const winningNumbers = [5,16,28,7,54]
-    if(winningNumbers.filter(winningNumber => winningNumber === firstNum).length === 0) return 'Better luck next time, not a winner.'
+    const winningNumbers = [5, 16, 28, 7, 54]
+    if (winningNumbers.filter(winningNumber => winningNumber === firstNum).length === 0) return 'Better luck next time, not a winner.'
 
-    if(rest.length === 0) return 'You Won!'
+    if (rest.length === 0) return 'You Won!'
 
     return lottoWinner(rest)
 }
@@ -101,8 +102,11 @@ const goodNumbers = [5, 16, 28, 7, 54]
 const badNumbers = [6, 17, 29, 8, 55]
 
 console.assert(lottoWinner(goodNumbers) === 'You Won!', 'Expected a winner, got a loser.')
-console.assert(lottoWinner(badNumbers) === 'Better luck next time, not a winner.', 'Expected a loser, got a winner')
+console.log(lottoWinner(goodNumbers))
 
+
+console.assert(lottoWinner(badNumbers) === 'Better luck next time, not a winner.', 'Expected a loser, got a winner')
+console.log(lottoWinner(badNumbers))
 /*
 @Challenge 03 - Write a function named 'characterCreation' Using our array from last weeks challenges this time you will be tasked with creating your own character.
 Create your character and add it to the current array. Then have two players select who they want to play as.
