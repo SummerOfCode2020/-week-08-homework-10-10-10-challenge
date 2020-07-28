@@ -1,7 +1,7 @@
 {
   "name": "week-08-homework-10-10-10-challenge",
   "version": "1.0.0",
-  "description": "",
+  "description": "week-08-10-10-10-challenge\r Overview\r Put effort in every day to get strong coding skills",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
