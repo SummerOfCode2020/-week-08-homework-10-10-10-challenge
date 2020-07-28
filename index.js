@@ -1,3 +1,12 @@
+// function to compare two arrays quickly in my console.asserts
+let matchArrays = ([arrayOneFirst, ...arrayOneRest], [arrayTwoFirst, ...arrayTwoRest]) => {
+    if (arrayOneFirst !== arrayTwoFirst) return false
+
+    if (arrayOneRest.length == 0 && arrayTwoRest.length == 0) return true
+
+    return matchArrays(arrayOneRest, arrayTwoRest)
+}
+
 /*
 @Challenge 01 - Write a function named 'everyonesFavorites' where you will be tasked to traverse through nested objects 
 within an array to get everyones favorite things.
@@ -28,12 +37,72 @@ let everyone = [{
 }
 ]
 */
+let everyone = [{
+    person: 'George',
+    favorites: {
+        color: 'Green',
+        animal: 'Buffalo',
+        sport: 'Football'
+    }
+}, {
+    person: 'Kristi',
+    favorites: {
+        color: 'Blue',
+        animal: 'Dog',
+        sport: 'Hockey'
+    }
+}, {
+    person: 'Tiffany',
+    favorites: {
+        color: 'Purple',
+        animal: 'Cat',
+        sport: 'Basketball'
+    }
+}]
+
+let everyonesFavorites = array => {
+    let returnArray = []
+    array.forEach(person => {
+        const name = person.person
+        const favColor = person.favorites.color
+        const favAnimal = person.favorites.animal
+        const favSport = person.favorites.sport
+        const output = `${name}'s favorite color is ${favColor}, their favorite animal is a ${favAnimal}, and their favorite sport is ${favSport}`
+        returnArray.push(output)
+    })
+    return returnArray
+}
+
+const expectedResult1 = [
+    "George's favorite color is Green, their favorite animal is a Buffalo, and their favorite sport is Football",
+    "Kristi's favorite color is Blue, their favorite animal is a Dog, and their favorite sport is Hockey",
+    "Tiffany's favorite color is Purple, their favorite animal is a Cat, and their favorite sport is Basketball"
+]
+
+console.assert(matchArrays(everyonesFavorites(everyone), expectedResult1) === true, "Expected arrays to match")
+
 /*
 @Challenge 02 - Write a function named 'lottoWinner' Where if the numbers given match "05, 16, 28, 07, 54" you will get 
 a notification that you have won. If it does not match you will get a notification saying you have lost.
 @Example - If the numbers match you should see something like "Congrats! You're our next Lotto winner!!" and if they do not match "Better luck next time!"
 @Test - Make a function call of lottoWinner().
 */
+
+let lottoWinner = ([firstNum, ...rest]) => {
+    const winningNumbers = [5,16,28,7,54]
+    if(winningNumbers.filter(winningNumber => winningNumber === firstNum).length === 0) return 'Better luck next time, not a winner.'
+
+    if(rest.length === 0) return 'You Won!'
+
+    return lottoWinner(rest)
+}
+
+const goodNumbers = [5, 16, 28, 7, 54]
+const badNumbers = [6, 17, 29, 8, 55]
+
+console.assert(lottoWinner(goodNumbers) === 'You Won!', 'Expected a winner, got a loser.')
+console.assert(lottoWinner(badNumbers) === 'Better luck next time, not a winner.', 'Expected a loser, got a winner')
+
 /*
 @Challenge 03 - Write a function named 'characterCreation' Using our array from last weeks challenges this time you will be tasked with creating your own character.
 Create your character and add it to the current array. Then have two players select who they want to play as.
@@ -57,6 +126,9 @@ let player = [{
     }
 ]
 */
+
+
+
 /*
 @Challenge 04 - Create a function called 'stringToNumArray' that takes in a single string of numbers and returns an array of numbers. 
 @Example - A string of '42, 03, 54, 10' should come back as [42, 03, 54, 10].
